@@ -1,21 +1,23 @@
 {
   "latest": "1.0.2",
   "minimum_supported": "1.0.0",
-  "released": "2026-03-24",
+  "released": "2026-03-25",
   "channel": "stable",
   "changelog": [
     {
       "version": "1.0.2",
       "date": "2026-03-24",
-      "summary": "Remove DSL Import UI, fix hex: color rebuild, complete Arcwright rename.",
+      "summary": "274 TCP commands, feedback system, complete documentation.",
       "highlights": [
-        "Removed 'Import DSL Blueprint' menu item from plugin UI",
-        "All user-visible 'Arcwright' strings renamed to 'Arcwright'",
-        "Screenshot directory uses Arcwright name",
-        "Comment paths updated to /Game/Arcwright/"
+        "274 TCP commands (up from 267)",
+        "Built-in feedback system via Cloudflare Worker relay",
+        "Feedback token removed from source — auth handled server-side",
+        "hex:#RRGGBB color support in all widget properties",
+        "Complete customer documentation (8 guides)",
+        "Removed DSL Import UI menu item"
       ],
       "breaking_changes": [],
-      "upgrade_notes": "DSL import is still available via the import_from_ir TCP command. The menu UI shortcut has been removed."
+      "upgrade_notes": "Feedback submissions now route through arcwright-feedback.arcwright.workers.dev instead of direct GitHub API."
     },
     {
       "version": "1.0.1",
@@ -40,7 +42,7 @@
       "date": "2026-03-24",
       "summary": "Initial release. Full HTML-to-UMG pipeline, Widget DSL, 5 B&S screens.",
       "highlights": [
-        "267 TCP commands",
+        "274 TCP commands",
         "Widget DSL — build UIs from declarative language",
         "Complete Bore & Stroke HUD suite (5 screens, 228/228 audit)",
         "Font import pipeline (import_font_family)",
