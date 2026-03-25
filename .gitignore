@@ -1,0 +1,7 @@
+Binaries/
+Intermediate/
+__pycache__/
+*.pyc
+.vs/
+*.pdb
+*.exe
