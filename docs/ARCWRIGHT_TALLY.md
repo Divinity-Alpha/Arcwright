@@ -23,6 +23,7 @@
 | F010 | add_widget_child | 2nd/3rd children added to root canvas lost — no root CanvasPanel auto-created | Widget HUD only shows first panel — health/objective sections missing | add_widget_child returns OK but set_widget_property says not found | v1.0.4-dev | 🟢 FIXED |
 | F011 | setup_default_lighting | PIE always black — lights spawned as Static, need lighting build | Blank level is black in PIE even after lighting setup | AI runs setup_default_lighting, PIE screenshot is black, enters workaround loop | v1.0.5-dev | 🟢 FIXED |
 | F011b | setup_default_lighting dark mode | Dark mode had zero ambient — scenes completely black | Dark/cyberpunk scenes invisible, no geometry visible | AI builds scene, PIE is black, cannot verify | v1.0.5-dev | 🟢 FIXED (AmbientFill + internal console cmds) |
+| F012 | setup_default_lighting persistence | Lights lost on editor restart — level not saved to disk | AI builds lit scene, restarts editor, scene is black | Lights spawn OK but vanish on restart, AI rebuilds every session | v1.0.5-dev | 🟢 FIXED (SaveCurrentLevel internal + save_level command) |
 
 ---
 
