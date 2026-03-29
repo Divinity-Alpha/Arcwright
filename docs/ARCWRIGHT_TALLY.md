@@ -50,8 +50,9 @@ The user experiences these as "nothing works" moments.
 | F004 | run_console_command | Param name conflicts with internal function | Console commands silently fail or error with confusing message | AI tries to use console commands as fallback for other broken commands, also fails | v1.0.3 | 🔴 OPEN |
 | F005 | set_actor_property | Light intensity/color not always applied to spawned actors | Spawned lights appear with default values — often white and dim | AI sets property, reports success, property not actually applied | v1.0.3 | 🔴 OPEN |
 | F006 | verify_all_blueprints | Sometimes reports 0 errors when errors exist | AI reports "all clean" but engine shows compile errors | AI trusts the response without cross-checking compile output | v1.0.3 | 🔴 OPEN |
-| F007 | set_component_property | LightColor via hex: prefix not applied to PointLightComponent | Light colors remain default white despite AI setting hex colors | AI calls set_component_property with hex:#RRGGBB, gets OK response, but color doesn't change | v1.0.3 | 🔴 OPEN |
-| F008 | All commands | Bad asset path crashes editor — invalid path passed to LoadObject/FindObject causes access violation | Editor freezes and crashes. AI loses connection. All progress since last save lost. | AI sends command with typo or wrong path, editor crashes, TCP connection dies, entire session must restart | v1.0.3-dev | 🟢 FIXED |
+| F007 | set_component_property | LightColor via hex: prefix not applied to PointLightComponent | Light colors remain default white despite AI setting hex colors | AI calls set_component_property with hex:#RRGGBB, gets OK response, but color doesn't change | v1.0.3 | 🟢 FIXED |
+| F008 | All commands | Bad asset path crashes editor — invalid path passed to LoadObject/FindObject causes access violation | Editor freezes and crashes. AI loses connection. All progress since last save lost. | AI sends command with typo or wrong path, editor crashes, TCP connection dies, entire session must restart | v1.0.3 | 🟢 FIXED |
+| F009 | get_actor_properties | Only accepts actor_label param — rejects actor_name/label/name | AI sends actor_name (most intuitive param), gets "missing parameter" error | AI must guess the exact param name or read source code | v1.0.3 | 🟢 FIXED |
 
 ---
 
@@ -301,6 +302,16 @@ Format for customers:
 ---
 
 ## TEST SUITE RESULTS HISTORY
+
+### Run 3 — 2026-03-28 (post F007/F008/F009 fix, pre-v1.0.3 release)
+
+| Category | Tests | Passed | Failed | Warned |
+|---|---|---|---|---|
+| Regression | 36 | 36 | 0 | 0 |
+| Stress | 26 | 25 | 0 | 1 |
+
+**Regression: 36/36 CLEAN.** All previously failing tests now pass (LightColor hex, get_actor_properties).
+**Stress: 25/26 CLEAN.** 0 crashes, 0 timeouts. 1 expected warning (color without hex: prefix).
 
 ### Run 2 — 2026-03-28 (post F008 fix)
 
