@@ -99,13 +99,13 @@ if (!Asset)
 | M003 | set_ambient_light | No workaround | Cannot control ambient lighting | v1.0.4 | 🔴 OPEN |
 | M004 | play_in_editor wait_for_ready | Manual sleep(5) before every screenshot | Awkward timing, frequent black screenshots | v1.0.3 | 🟢 ADDED |
 | M005 | get_build_errors | Parses raw output log manually | AI reads raw log, misses things | v1.0.3 | 🟢 ADDED |
-| M006 | batch_spawn_actors | Loops spawn_actor_at one at a time | 20 actors = 20 round trips, slow | v1.0.4 | 🔴 OPEN |
-| M007 | set_level_post_process | No workaround | Cannot set bloom/tone for cinematics | v1.0.4 | 🔴 OPEN |
-| M008 | teleport_player_smooth | Hard cut only | Jarring in recordings | v1.0.4 | 🔴 OPEN |
-| M009 | set_time_of_day | No workaround | Cannot demonstrate day/night | v1.0.4 | 🔴 OPEN |
-| M010 | apply_material_by_name | Must know exact full asset path | AI guesses wrong paths | v1.0.4 | 🔴 OPEN |
-| M011 | create_post_process_volume | No workaround | Advanced visual effects impossible | v1.0.4 | 🔴 OPEN |
-| M012 | get_actor_screenshot | No per-actor capture | Cannot visually verify specific actor | v1.0.4 | 🔴 OPEN |
+| M006 | batch_spawn_actors | Loops spawn_actor_at one at a time | 20 actors = 20 round trips, slow | v1.0.4 | 🟢 ADDED |
+| M007 | set_level_post_process | No workaround | Cannot set bloom/tone for cinematics | v1.0.4 | 🟢 ADDED |
+| M008 | teleport_player_smooth | Hard cut only | Jarring in recordings | v1.0.4 | 🟢 ADDED |
+| M009 | set_time_of_day | No workaround | Cannot demonstrate day/night | v1.0.4 | 🟢 ADDED |
+| M010 | apply_material_by_name | Must know exact full asset path | AI guesses wrong paths | v1.0.4 | 🟢 ADDED |
+| M011 | create_post_process_volume | No workaround | Advanced visual effects impossible | v1.0.4 | 🟢 ADDED |
+| M012 | get_actor_screenshot | No per-actor capture | Cannot visually verify specific actor | v1.0.4 | 🟢 ADDED |
 
 
 ---
