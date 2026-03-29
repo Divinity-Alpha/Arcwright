@@ -1,8 +1,14 @@
 # SKILL 001 — Level Lighting Setup
 **Category:** Scene Setup
-**Status:** Workaround — needs v1.0.3 command
-**Reliability:** Low with current commands
+**Status:** FIXED in v1.0.3 — use `setup_default_lighting`
+**Reliability:** High
 **Discovered:** NeonBreach session
+
+## v1.0.3 Fix
+```json
+{"command": "setup_default_lighting", "params": {"scene_type": "outdoor"}}
+```
+Single command. Modes: `outdoor`, `indoor`, `dark`. No workaround needed.
 
 ## Problem
 New blank levels have zero lighting. Screenshots and PIE

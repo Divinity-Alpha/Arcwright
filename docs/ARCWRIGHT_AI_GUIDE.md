@@ -1,8 +1,8 @@
 # Arcwright AI Guide
 ### How to Operate as an Autonomous UE5 Development Agent
 
-**Version:** 2.0  
-**Plugin:** Arcwright v1.0.2  
+**Version:** 2.1
+**Plugin:** Arcwright v1.0.3  
 **For:** Claude Code, Claude Desktop, Cursor, Windsurf, and any MCP-capable AI
 
 ---
@@ -121,6 +121,11 @@ Every autonomous session starts with this sequence:
 ```
 1. health_check → confirm UE5 is running
    If not → launch UE5 → wait for ready → health_check again
+
+1.5. setup_default_lighting {"scene_type": "outdoor"}
+     Run on every new level before any other work.
+     Single command — replaces the old BP_NeonLighting workaround.
+     Modes: "outdoor" (bright sun), "indoor" (warm interior), "dark" (moonlight)
 
 2. Start crash reporter killer (background process)
 

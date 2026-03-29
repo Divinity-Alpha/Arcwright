@@ -1,8 +1,14 @@
 # SKILL 002 — PIE Screenshots
 **Category:** Testing and Verification
-**Status:** Workaround — needs v1.0.3 fix
-**Reliability:** Medium
+**Status:** FIXED in v1.0.3
+**Reliability:** High
 **Discovered:** NeonBreach session
+
+## v1.0.3 Fix
+- `play_in_editor` now has `wait_for_ready` param (default `true`) — polls until PIE is loaded
+- `take_screenshot` now auto-detects PIE viewport and captures game view instead of editor
+- `take_screenshot` accepts `delay_ms` param for additional stabilization
+- No longer requires manual 5-second delay
 
 ## Problem
 take_screenshot captures editor viewport (wireframe icons)

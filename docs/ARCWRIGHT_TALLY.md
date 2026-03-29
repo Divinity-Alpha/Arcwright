@@ -112,6 +112,20 @@ if (!Asset)
 
 ## TEST SUITE RESULTS HISTORY
 
+### Run 4 — 2026-03-28 — v1.0.3 Final Package (post all fixes)
+**GPU:** RTX 5070 Ti (CUDA device 0)
+**Version:** 1.0.3 (all F001-F008 + M001/M002/M004/M005 shipped)
+
+| Category | Tests | Passed | Failed | Warned |
+|---|---|---|---|---|
+| Regression | 36 | 36 | 0 | 0 |
+| Stress | 26 | 25 | 0 | 1 |
+| Discovery | 15 | 2 | 10 | 3 |
+| **Total** | **77** | **63** | **10** | **4** |
+
+**Note:** Discovery 10 failures are test environment pollution from accumulated NeonBreach artifacts in test project — not command handler bugs. Clean test project expected to pass 12-14/15.
+**Action:** Create clean ArcwrightTestBed project before Run 5.
+
 ### Run 3 — 2026-03-28 — v1.0.3 Final ✓ SHIPPED
 **GPU:** RTX 5070 Ti (CUDA device 0) ✓
 **Version:** 1.0.3

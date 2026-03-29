@@ -86,6 +86,8 @@ Test all gameplay features in PIE. Report what the screenshot shows and what the
 
 ```
 1. health_check → confirm connected (if fail → launch UE5)
+1.5. setup_default_lighting {"scene_type": "outdoor"}
+     Run on every new level — prevents black screen
 2. Start crash reporter killer (background)
 3. verify_all_blueprints → note pre-existing errors
 4. run_map_check → note pre-existing warnings
