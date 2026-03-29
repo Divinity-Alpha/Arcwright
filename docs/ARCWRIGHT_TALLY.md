@@ -21,6 +21,7 @@
 | F007 | verify_all_blueprints | Only searches /Game/Arcwright/Generated/ | AI reports "all clean" but errors exist in other paths | AI trusts response without cross-checking | v1.0.3 | 🟢 FIXED (searches all /Game/) |
 | F008 | ANY command with invalid path | Editor crashes on bad LoadObject | Typo crashes UE5, loses session work | Bad path kills editor, connection lost | v1.0.3 | 🟢 FIXED |
 | F010 | add_widget_child | 2nd/3rd children added to root canvas lost — no root CanvasPanel auto-created | Widget HUD only shows first panel — health/objective sections missing | add_widget_child returns OK but set_widget_property says not found | v1.0.4-dev | 🟢 FIXED |
+| F011 | setup_default_lighting | PIE always black — lights spawned as Static, need lighting build | Blank level is black in PIE even after lighting setup | AI runs setup_default_lighting, PIE screenshot is black, enters workaround loop | v1.0.5-dev | 🟢 FIXED |
 
 ---
 
