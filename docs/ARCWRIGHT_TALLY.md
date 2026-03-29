@@ -50,6 +50,8 @@ The user experiences these as "nothing works" moments.
 | F004 | run_console_command | Param name conflicts with internal function | Console commands silently fail or error with confusing message | AI tries to use console commands as fallback for other broken commands, also fails | v1.0.3 | 🔴 OPEN |
 | F005 | set_actor_property | Light intensity/color not always applied to spawned actors | Spawned lights appear with default values — often white and dim | AI sets property, reports success, property not actually applied | v1.0.3 | 🔴 OPEN |
 | F006 | verify_all_blueprints | Sometimes reports 0 errors when errors exist | AI reports "all clean" but engine shows compile errors | AI trusts the response without cross-checking compile output | v1.0.3 | 🔴 OPEN |
+| F007 | set_component_property | LightColor via hex: prefix not applied to PointLightComponent | Light colors remain default white despite AI setting hex colors | AI calls set_component_property with hex:#RRGGBB, gets OK response, but color doesn't change | v1.0.3 | 🔴 OPEN |
+| F008 | All commands | Bad asset path crashes editor — invalid path passed to LoadObject/FindObject causes access violation | Editor freezes and crashes. AI loses connection. All progress since last save lost. | AI sends command with typo or wrong path, editor crashes, TCP connection dies, entire session must restart | v1.0.3-dev | 🟢 FIXED |
 
 ---
 
@@ -295,6 +297,34 @@ Format for customers:
 **Affects:** All screenshot usage, v1.0.2
 **Workaround:** Wait 5 seconds after play_in_editor
 **Fix:** v1.0.3 — auto-detects PIE viewport
+
+---
+
+## TEST SUITE RESULTS HISTORY
+
+### Run 2 — 2026-03-28 (post F008 fix)
+
+| Category | Tests | Passed | Failed | Warned |
+|---|---|---|---|---|
+| Regression | 36 | 34 | 2 | 0 |
+| Stress | 26 | 25 | 0 | 1 |
+| Discovery | 15 | 1 | 10 | 4 |
+| **Total** | **77** | **60** | **12** | **5** |
+
+**F008 impact:** Stress suite went from 5/26 → 25/26. Zero crashes, zero timeouts.
+**Remaining regression failures:** F007 (LightColor hex on components), get_actor_properties param name.
+**Discovery failures:** Cascade from PIE crash (F002/F003) — editor goes down during PIE screenshot test.
+
+### Run 1 — 2026-03-28 (before F008 fix)
+
+| Category | Tests | Passed | Failed | Warned |
+|---|---|---|---|---|
+| Regression | 36 | 19 | 17 | 0 |
+| Stress | 26 | 5 | 21 | 0 |
+| Discovery | 15 | 1 | 10 | 4 |
+| **Total** | **77** | **42** | **31** | **4** |
+
+**Note:** 17 regression failures were wrong API param names in test suite (fixed). 21 stress failures were all cascading from F008 crash.
 
 ---
 Last updated: 2026-03-28
