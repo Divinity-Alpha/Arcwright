@@ -12,14 +12,14 @@
 
 | # | Command | What Breaks | User Experience | AI Experience | Fix Version | Status |
 |---|---|---|---|---|---|---|
-| F001 | setup_scene_lighting | Hardcodes intensity=2, ignores all params | New level is completely black. Day-one blocker. | AI calls with correct params, gets intensity=2 regardless, scene stays black | v1.0.4 | 🔴 OPEN |
-| F002 | take_screenshot | Captures editor viewport wireframe not PIE window | Screenshots are black or show editor chrome | AI reports taken but image is black. Cannot verify visual results. | v1.0.4 | 🔴 OPEN |
-| F003 | play_in_editor | Returns before PIE fully loaded | AI screenshots immediately, gets black result | AI calls play_in_editor, immediately screenshots, gets black, enters confusion loop | v1.0.4 | 🔴 OPEN |
-| F004 | run_console_command | Param name conflicts with internal function | Console commands silently fail | AI uses as fallback, also fails | v1.0.4 | 🔴 OPEN |
-| F005 | set_component_property LightColor | hex: prefix not working on component light color | Light colors always wrong — cannot set colored lights | AI sets hex:#4a9eff, color not applied, light stays white | v1.0.3 | 🟢 FIXED |
-| F006 | get_actor_properties | Command missing or wrong param name | AI cannot read back actor state to verify spawn | AI calls command, gets error, cannot confirm actor properties | v1.0.3 | 🟢 FIXED |
-| F007 | verify_all_blueprints | Sometimes reports 0 errors when errors exist | AI reports "all clean" but engine shows errors | AI trusts response without cross-checking | v1.0.4 | 🔴 OPEN |
-| F008 | ANY command with invalid path | Editor crashes — no graceful error returned | Typo in any asset path crashes UE5 and loses session work | Bad path kills the editor, connection lost, all subsequent commands fail | v1.0.3 | 🟢 FIXED |
+| F001 | setup_scene_lighting | Hardcodes intensity=2, ignores all params | New level is completely black. Day-one blocker. | AI calls with correct params, gets intensity=2 regardless | v1.0.3 | 🟢 FIXED (setup_default_lighting added) |
+| F002 | take_screenshot | Captures editor viewport wireframe not PIE window | Screenshots are black or show editor chrome | AI reports taken but image is black | v1.0.3 | 🟢 FIXED (PIE viewport detection) |
+| F003 | play_in_editor | Returns before PIE fully loaded | AI screenshots immediately, gets black result | AI calls play_in_editor, immediately screenshots, black | v1.0.3 | 🟢 FIXED (wait_for_ready param) |
+| F004 | run_console_command | Param name conflicts, requires PIE | Console commands silently fail | AI uses as fallback, also fails | v1.0.3 | 🟢 FIXED (editor+PIE dual world) |
+| F005 | set_component_property LightColor | hex: prefix not working on component light color | Light colors always wrong | AI sets hex:#4a9eff, color not applied | v1.0.3 | 🟢 FIXED |
+| F006 | get_actor_properties | Only accepts actor_label param | AI cannot read back actor state | AI calls command, gets error | v1.0.3 | 🟢 FIXED |
+| F007 | verify_all_blueprints | Only searches /Game/Arcwright/Generated/ | AI reports "all clean" but errors exist in other paths | AI trusts response without cross-checking | v1.0.3 | 🟢 FIXED (searches all /Game/) |
+| F008 | ANY command with invalid path | Editor crashes on bad LoadObject | Typo crashes UE5, loses session work | Bad path kills editor, connection lost | v1.0.3 | 🟢 FIXED |
 
 ---
 
@@ -94,11 +94,11 @@ if (!Asset)
 
 | # | Missing Command | What AI Does Instead | User Experience | Target Version | Status |
 |---|---|---|---|---|---|
-| M001 | setup_default_lighting | Creates BP_Lighting actor manually (8+ steps) | Day-one blocker for every new project | v1.0.3 | 🔴 OPEN |
-| M002 | set_view_mode | run_console_command (fails) | Cannot switch lit/unlit/wireframe | v1.0.3 | 🔴 OPEN |
-| M003 | set_ambient_light | No workaround | Cannot control ambient lighting | v1.0.3 | 🔴 OPEN |
-| M004 | play_in_editor wait_for_ready | Manual sleep(5) before every screenshot | Awkward timing, frequent black screenshots | v1.0.3 | 🔴 OPEN |
-| M005 | get_build_errors | Parses raw output log manually | AI reads raw log, misses things | v1.0.3 | 🔴 OPEN |
+| M001 | setup_default_lighting | Creates BP_Lighting actor manually (8+ steps) | Day-one blocker for every new project | v1.0.3 | 🟢 ADDED |
+| M002 | set_view_mode | run_console_command (fails) | Cannot switch lit/unlit/wireframe | v1.0.3 | 🟢 ADDED |
+| M003 | set_ambient_light | No workaround | Cannot control ambient lighting | v1.0.4 | 🔴 OPEN |
+| M004 | play_in_editor wait_for_ready | Manual sleep(5) before every screenshot | Awkward timing, frequent black screenshots | v1.0.3 | 🟢 ADDED |
+| M005 | get_build_errors | Parses raw output log manually | AI reads raw log, misses things | v1.0.3 | 🟢 ADDED |
 | M006 | batch_spawn_actors | Loops spawn_actor_at one at a time | 20 actors = 20 round trips, slow | v1.0.4 | 🔴 OPEN |
 | M007 | set_level_post_process | No workaround | Cannot set bloom/tone for cinematics | v1.0.4 | 🔴 OPEN |
 | M008 | teleport_player_smooth | Hard cut only | Jarring in recordings | v1.0.4 | 🔴 OPEN |
